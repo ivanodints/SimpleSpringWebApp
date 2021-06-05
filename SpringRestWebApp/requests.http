@@ -1,0 +1,71 @@
+// local server
+// super_admin:   login - super  pass: super
+// admin:   login - admin  pass: admin
+// guest:   login - guest  pass: guest
+
+GET http://localhost:8095/spring-hibernate/api/v1/product/all
+Authorization: Basic guest guest
+
+###
+
+GET http://localhost:8095/spring-hibernate/api/v1/product/1
+Authorization: Basic admin admin
+
+###
+
+DELETE http://localhost:8095/spring-hibernate/api/v1/product/delete/11
+Authorization: Basic admin admin
+
+###
+
+POST http://localhost:8095/spring-hibernate/api/v1/product
+Content-Type: application/json
+Authorization: Basic admin admin
+
+{
+  "category": "paints",
+  "title": "green",
+  "price": 19
+}
+
+###
+
+PUT http://localhost:8095/spring-hibernate/api/v1/product
+Content-Type: application/json
+Authorization: Basic super super
+
+{
+  "id": 1,
+  "category": "paints",
+  "title": "Brass scorpio",
+  "price": 30
+}
+
+###
+
+GET http://localhost:8095/spring-hibernate/api/v1/product/basket/all
+Authorization: Basic guest guest
+
+###
+
+DELETE http://localhost:8095/spring-hibernate/api/v1/product/basket/remove/13
+Authorization: Basic guest guest
+
+###
+
+POST http://localhost:8095/spring-hibernate/api/v1/product/basket/add/12
+Authorization: Basic guest guest
+
+###
+
+GET http://localhost:8095/spring-hibernate/api/v1/product/filter
+
+###
+
+GET http://localhost:8095/spring-hibernate/api/v1/user/14
+Authorization: Basic super super
+
+###
+
+GET http://localhost:8095/spring-hibernate/api/v1/user/all
+Authorization: Basic super super

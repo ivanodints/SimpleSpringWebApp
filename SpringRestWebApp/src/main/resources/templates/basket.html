@@ -1,0 +1,54 @@
+<!doctype html>
+
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/head.html :: head"/>
+
+<body>
+
+<div class="container">
+    <div class="row py-2">
+        <div class="col-12 ml-3">
+            <a class="btn btn-primary" href="/spring-hibernate/artshop">Catalog</a>
+        </div>
+
+<div class="container">
+    <div class="row py-2">
+
+        <div class="col-12">
+            <table class="table table-bordered my-2">
+                <thead>
+                <tr>
+
+                    <th scope="col">Title</th>
+
+                    <th scope="col">Price($)</th>
+                    <th scope="col">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="basket : ${basketProducts}" >
+
+                    <td th:text="${basket.title}">Synthetic brush</td>
+
+                    <td th:text="${basket.price}">1$</td>
+                    <td>
+                        <form   sec:authorize="isAuthenticated()"
+                                class="d-inline" th:method="delete" th:action="@{/artshop/basket/remove/{id}(id = ${basket.id})}">
+                            <button type="submit" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+                        </form>
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+            <td>Total:</td>
+        </div>
+    </div>
+</div>
+
+<th:block th:replace="fragments/scripts.html :: scripts"/>
+</body>
+</html>
