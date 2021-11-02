@@ -1,6 +1,7 @@
 package ru.geekbrains.rest;
 
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -22,7 +23,7 @@ import java.util.Optional;
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-
+@Tag(name = "Product resource API", description = "API to manipulate Product resource ...")
 @RestController
 @RequestMapping("/api/v1/product")
 public class ProductResource {
@@ -99,25 +100,6 @@ public class ProductResource {
     public ResponseEntity<String> badRequestException(BadRequestException ex) {
         return new ResponseEntity<>("Bad Request", HttpStatus.NOT_FOUND);
     }
-
-////    --------------------------------------------Basket------------------------------------------------------------
-//
-//    @GetMapping(path = "/basketProducts" +
-//            "", produces = "application/json")
-//    public List<BasketProduct> showAllBasketProducts() {
-//        return productService.showBasket();
-//    }
-//
-//    @DeleteMapping("/basket/remove/{id}")
-//    public void deleteByBasketId(@PathVariable("id") Long id){
-//        productService.deleteBasketProductById(id);
-//    }
-//
-//    @PostMapping("/basket/add/{id}")
-//    public BasketProduct putProductToBasket (@PathVariable("id") Long id){
-//
-//         return productService.addProductToBasketById(id);
-//    }
 
 
 }

@@ -1,5 +1,6 @@
 package ru.geekbrains.rest;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.geekbrains.art_shop.BasketProduct;
@@ -9,7 +10,7 @@ import ru.geekbrains.service.ProductService;
 import java.util.List;
 import java.util.Optional;
 
-
+@Tag(name = "Basket resource API", description = "API to manipulate Basket resource ...")
 @RestController
 @RequestMapping("/api/v1/product/basket")
 public class BasketResource {
