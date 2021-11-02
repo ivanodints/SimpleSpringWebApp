@@ -2,7 +2,7 @@ package ru.geekbrains.art_shop;
 
 
 import org.springframework.data.jpa.domain.Specification;
-import ru.geekbrains.service.ProductRest;
+import ru.geekbrains.service.DTO.ProductRest;
 
 public class ProductSpecification {
 

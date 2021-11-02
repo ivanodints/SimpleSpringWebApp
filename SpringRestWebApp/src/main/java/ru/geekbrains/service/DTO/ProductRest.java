@@ -1,7 +1,7 @@
-package ru.geekbrains.service;
+package ru.geekbrains.service.DTO;
 
-import ru.geekbrains.art_shop.BasketProduct;
 import ru.geekbrains.art_shop.Product;
+import ru.geekbrains.service.DTO.ProductDTO;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -37,11 +37,11 @@ public class ProductRest {
         this.price = product.getPrice();
     }
 
-    public ProductRest(ProductRepr productRepr) {
-        this.id = productRepr.getId();
-        this.category = productRepr.getCategory();
-        this.title = productRepr.getTitle();
-        this.price = productRepr.getPrice();
+    public ProductRest(ProductDTO productDTO) {
+        this.id = productDTO.getId();
+        this.category = productDTO.getCategory();
+        this.title = productDTO.getTitle();
+        this.price = productDTO.getPrice();
     }
 
 

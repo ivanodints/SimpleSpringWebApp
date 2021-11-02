@@ -12,8 +12,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import ru.geekbrains.art_shop.Role;
-import ru.geekbrains.art_shop.RoleRepository;
-import ru.geekbrains.service.UserRepr;
+import ru.geekbrains.art_shop.repository.RoleRepository;
+import ru.geekbrains.service.DTO.UserDTO;
 import ru.geekbrains.service.UserService;
 
 import javax.validation.Valid;
@@ -45,7 +45,7 @@ public class UserController {
                            @RequestParam("sortField") Optional<String> sortField) {
         logger.info("List page requested");
 
-        Page<UserRepr> users = userService.findWithFilter(
+        Page<UserDTO> users = userService.findWithFilter(
                 usernameFilter.orElse(null),
                 ageMinFilter.orElse(null),
                 ageMaxFilter.orElse(null),
@@ -70,7 +70,7 @@ public class UserController {
 
     @Secured({"ADMIN"})
     @PostMapping("/update")
-    public String update(@Valid @ModelAttribute("user") UserRepr user, BindingResult result, Model model) {
+    public String update(@Valid @ModelAttribute("user") UserDTO user, BindingResult result, Model model) {
         logger.info("Update endpoint requested");
 
         model.addAttribute("roles", roleRepository.findAll());
@@ -99,7 +99,7 @@ public class UserController {
         }
 
         model.addAttribute("roles", roleRepository.findAll());
-        model.addAttribute("user", new UserRepr());
+        model.addAttribute("user", new UserDTO());
         return "user_form";
     }
 

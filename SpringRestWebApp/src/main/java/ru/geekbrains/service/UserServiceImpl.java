@@ -10,8 +10,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.geekbrains.art_shop.User;
-import ru.geekbrains.art_shop.UserRepository;
+import ru.geekbrains.art_shop.repository.UserRepository;
 import ru.geekbrains.art_shop.UserSpecification;
+import ru.geekbrains.service.DTO.UserDTO;
 
 import java.util.List;
 import java.util.Optional;
@@ -33,15 +34,15 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public List<UserRepr> findAll() {
+    public List<UserDTO> findAll() {
         return userRepository.findAll().stream()
-                .map(UserRepr::new)
+                .map(UserDTO::new)
                 .collect(Collectors.toList());
     }
 
     @Override
-    public Page<UserRepr> findWithFilter(String usernameFilter, Integer minAge, Integer maxAge,
-                                         Integer page, Integer size, String sortField) {
+    public Page<UserDTO> findWithFilter(String usernameFilter, Integer minAge, Integer maxAge,
+                                        Integer page, Integer size, String sortField) {
         Specification<User> spec = Specification.where(null);
         if (usernameFilter != null && !usernameFilter.isBlank()) {
             spec = spec.and(UserSpecification.usernameLike(usernameFilter));
@@ -54,22 +55,22 @@ public class UserServiceImpl implements UserService {
         }
         if (sortField != null && !sortField.isBlank()) {
             return userRepository.findAll(spec, PageRequest.of(page, size, Sort.by(sortField)))
-                    .map(UserRepr::new);
+                    .map(UserDTO::new);
         }
         return userRepository.findAll(spec, PageRequest.of(page, size))
-                .map(UserRepr::new);
+                .map(UserDTO::new);
     }
 
     @Transactional
     @Override
-    public Optional<UserRepr> findById(long id) {
+    public Optional<UserDTO> findById(long id) {
        return userRepository.findById(id)
-                .map(UserRepr::new);
+                .map(UserDTO::new);
     }
 
     @Transactional
     @Override
-    public void save(UserRepr user) {
+    public void save(UserDTO user) {
         User userToSave = new User(user);
         userToSave.setPassword(passwordEncoder.encode(userToSave.getPassword()));
         userRepository.save(userToSave);

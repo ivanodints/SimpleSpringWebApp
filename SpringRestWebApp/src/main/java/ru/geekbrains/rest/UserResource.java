@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.geekbrains.controller.BadRequestException;
 import ru.geekbrains.controller.NotFoundException;
-import ru.geekbrains.service.UserRepr;
+import ru.geekbrains.service.DTO.UserDTO;
 import ru.geekbrains.service.UserService;
 
 import java.util.List;
@@ -31,22 +31,22 @@ public class UserResource {
     }
 
     @GetMapping(path = "/all", produces = "application/json")
-    public List<UserRepr> findAll() {
+    public List<UserDTO> findAll() {
         return userService.findAll().stream()
                 .peek(u -> u.setPassword(null))
                 .collect(Collectors.toList());
     }
 
     @GetMapping(path = "/{id}")
-    public UserRepr findById(@PathVariable("id") Long id) {
-        UserRepr userRepr = userService.findById(id)
+    public UserDTO findById(@PathVariable("id") Long id) {
+        UserDTO userDTO = userService.findById(id)
                 .orElseThrow(NotFoundException::new);
-        userRepr.setPassword(null);
-        return userRepr;
+        userDTO.setPassword(null);
+        return userDTO;
     }
 
     @GetMapping("filter")
-    public Page<UserRepr> listPage(
+    public Page<UserDTO> listPage(
                            @RequestParam("usernameFilter") Optional<String> usernameFilter,
                            @RequestParam("ageMinFilter") Optional<Integer> ageMinFilter,
                            @RequestParam("ageMaxFilter") Optional<Integer> ageMaxFilter,
@@ -65,20 +65,20 @@ public class UserResource {
     }
 
     @PostMapping(consumes = "application/json")
-    public UserRepr create(@RequestBody UserRepr userRepr) {
-        if (userRepr.getId() != null) {
+    public UserDTO create(@RequestBody UserDTO userDTO) {
+        if (userDTO.getId() != null) {
             throw new BadRequestException();
         }
-        userService.save(userRepr);
-        return userRepr;
+        userService.save(userDTO);
+        return userDTO;
     }
 
     @PutMapping(consumes = "application/json")
-    public void update(@RequestBody UserRepr userRepr) {
-        if (userRepr.getId() == null) {
+    public void update(@RequestBody UserDTO userDTO) {
+        if (userDTO.getId() == null) {
             throw new BadRequestException();
         }
-        userService.save(userRepr);
+        userService.save(userDTO);
     }
 
     @DeleteMapping("/{id}")

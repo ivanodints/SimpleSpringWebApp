@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import ru.geekbrains.art_shop.BasketProduct;
 import ru.geekbrains.service.BasketService;
-import ru.geekbrains.service.ProductRepr;
+import ru.geekbrains.service.DTO.ProductDTO;
 import ru.geekbrains.service.ProductService;
 
 import javax.validation.Valid;
@@ -47,7 +47,7 @@ public class ProductController {
         logger.info("List page requested");
 
 
-        Page<ProductRepr> products = productService.findWithFilter(
+        Page<ProductDTO> products = productService.findWithFilter(
                 productTitleFilter.orElse(null),
                 minPriceFilter.orElse(null),
                 maxPriceFilter.orElse(null),
@@ -73,7 +73,7 @@ public class ProductController {
     public String addProduct(Model model) {
         logger.info("Create new Product");
 
-        model.addAttribute("product", new ProductRepr());
+        model.addAttribute("product", new ProductDTO());
         return "product_form";
     }
 
@@ -88,14 +88,14 @@ public class ProductController {
 
     @Secured({"ADMIN"})
     @PostMapping("/update")
-    public String updateProduct(@Valid ProductRepr productRepr, BindingResult result) {
+    public String updateProduct(@Valid ProductDTO productDTO, BindingResult result) {
         logger.info("Update endpoint requested");
 
         if (result.hasErrors()) {
             return "product_form";
         }
         logger.info("Product update");
-        productService.saveProduct(productRepr);
+        productService.saveProduct(productDTO);
 
         return "redirect:/artshop";
     }

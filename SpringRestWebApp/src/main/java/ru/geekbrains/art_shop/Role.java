@@ -1,14 +1,11 @@
 package ru.geekbrains.art_shop;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.springframework.transaction.annotation.Transactional;
-import ru.geekbrains.service.UserRepr;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 @Entity
 @Table(name = "roles")

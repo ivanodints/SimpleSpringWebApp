@@ -1,10 +1,11 @@
-package ru.geekbrains.art_shop;
+package ru.geekbrains.art_shop.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import ru.geekbrains.art_shop.User;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,4 +1,4 @@
-package ru.geekbrains.service;
+package ru.geekbrains.service.DTO;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import ru.geekbrains.art_shop.Role;
@@ -11,7 +11,7 @@ import java.util.Objects;
 import java.util.Set;
 
 // DTO
-public class UserRepr {
+public class UserDTO {
 
     private Long id;
 
@@ -32,14 +32,14 @@ public class UserRepr {
 
     private Set<Role> roles;
 
-    public UserRepr() {
+    public UserDTO() {
     }
 
-    public UserRepr(String username) {
+    public UserDTO(String username) {
         this.username = username;
     }
 
-    public UserRepr(User user) {
+    public UserDTO(User user) {
         this.id = user.getId();
         this.username = user.getUsername();
         this.email = user.getEmail();
@@ -109,8 +109,8 @@ public class UserRepr {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        UserRepr userRepr = (UserRepr) o;
-        return id.equals(userRepr.id);
+        UserDTO userDTO = (UserDTO) o;
+        return id.equals(userDTO.id);
     }
 
     @Override

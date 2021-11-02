@@ -8,6 +8,9 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.geekbrains.art_shop.*;
+import ru.geekbrains.art_shop.repository.ProductRepo;
+import ru.geekbrains.service.DTO.ProductDTO;
+import ru.geekbrains.service.DTO.ProductRest;
 
 import java.util.List;
 import java.util.Optional;
@@ -27,23 +30,23 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductRepr> showAllProducts() {
+    public List<ProductDTO> showAllProducts() {
 
-        return productRepo.findAll().stream().map(ProductRepr::new).collect(Collectors.toList());
+        return productRepo.findAll().stream().map(ProductDTO::new).collect(Collectors.toList());
 
     }
 
     @Transactional
     @Override
-    public Optional<ProductRepr> findProductById(Long id) {
+    public Optional<ProductDTO> findProductById(Long id) {
 
-        return productRepo.findById(id).map(ProductRepr::new);
+        return productRepo.findById(id).map(ProductDTO::new);
     }
 
     @Transactional
     @Override
-    public void saveProduct(ProductRepr productRepr) {
-        productRepo.save(new Product(productRepr));
+    public void saveProduct(ProductDTO productDTO) {
+        productRepo.save(new Product(productDTO));
     }
 
 
@@ -55,12 +58,12 @@ public class ProductServiceImpl implements ProductService {
 
 
     @Override
-    public Page<ProductRepr> findWithFilter(String productTitleFilter,
-                                            Integer minPriceFilter,
-                                            Integer maxPriceFilter,
-                                            Integer pageNumber,
-                                            Integer tableSize,
-                                            String sort) {
+    public Page<ProductDTO> findWithFilter(String productTitleFilter,
+                                           Integer minPriceFilter,
+                                           Integer maxPriceFilter,
+                                           Integer pageNumber,
+                                           Integer tableSize,
+                                           String sort) {
 
         Specification<Product> spec = Specification.where(null);
 
@@ -75,14 +78,14 @@ public class ProductServiceImpl implements ProductService {
         }
         if (sort == null) {
             return productRepo.findAll(spec, PageRequest.of(pageNumber, tableSize))
-                    .map(ProductRepr::new);
+                    .map(ProductDTO::new);
 
         } else if (sort.isEmpty()){
             return productRepo.findAll(spec, PageRequest.of(pageNumber, tableSize))
-                    .map(ProductRepr::new);
+                    .map(ProductDTO::new);
         } else {
             return productRepo.findAll(spec, PageRequest.of(pageNumber, tableSize, Sort.by(sort).ascending()))
-                    .map(ProductRepr::new);
+                    .map(ProductDTO::new);
         }
     }
 

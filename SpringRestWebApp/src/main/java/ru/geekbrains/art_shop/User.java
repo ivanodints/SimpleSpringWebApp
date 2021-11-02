@@ -1,7 +1,6 @@
 package ru.geekbrains.art_shop;
 
-import org.springframework.boot.actuate.endpoint.annotation.Selector;
-import ru.geekbrains.service.UserRepr;
+import ru.geekbrains.service.DTO.UserDTO;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -41,7 +40,7 @@ public class User {
         this.username = username;
     }
 
-    public User(UserRepr user) {
+    public User(UserDTO user) {
         this.id = user.getId();
         this.username = user.getUsername();
         this.password = user.getPassword();

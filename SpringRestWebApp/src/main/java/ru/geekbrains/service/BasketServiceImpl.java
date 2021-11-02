@@ -4,9 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.geekbrains.art_shop.BasketProduct;
-import ru.geekbrains.art_shop.BasketRepo;
+import ru.geekbrains.art_shop.repository.BasketRepo;
 import ru.geekbrains.art_shop.Product;
-import ru.geekbrains.art_shop.ProductRepo;
+import ru.geekbrains.art_shop.repository.ProductRepo;
 
 import java.util.List;
 import java.util.Optional;

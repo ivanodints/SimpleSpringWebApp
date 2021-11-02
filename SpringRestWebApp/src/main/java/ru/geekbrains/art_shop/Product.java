@@ -1,8 +1,8 @@
 package ru.geekbrains.art_shop;
 
 
-import ru.geekbrains.service.ProductRepr;
-import ru.geekbrains.service.ProductRest;
+import ru.geekbrains.service.DTO.ProductDTO;
+import ru.geekbrains.service.DTO.ProductRest;
 
 import javax.persistence.*;
 
@@ -35,11 +35,11 @@ public class Product {
         this.price = price;
     }
 
-    public Product(ProductRepr productRepr) {
-        this.id = productRepr.getId();
-        this.category = productRepr.getCategory();
-        this.title = productRepr.getTitle();
-        this.price = productRepr.getPrice();
+    public Product(ProductDTO productDTO) {
+        this.id = productDTO.getId();
+        this.category = productDTO.getCategory();
+        this.title = productDTO.getTitle();
+        this.price = productDTO.getPrice();
     }
 
     public Product(ProductRest productRest) {

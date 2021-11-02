@@ -5,15 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ru.geekbrains.art_shop.BasketProduct;
-import ru.geekbrains.art_shop.Product;
 import ru.geekbrains.controller.BadRequestException;
 import ru.geekbrains.controller.NotFoundException;
-import ru.geekbrains.service.ProductRepr;
-import ru.geekbrains.service.ProductRest;
+import ru.geekbrains.service.DTO.ProductRest;
 import ru.geekbrains.service.ProductService;
 
 import java.util.List;

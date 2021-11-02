@@ -1,11 +1,11 @@
-package ru.geekbrains.service;
+package ru.geekbrains.service.DTO;
 
 import ru.geekbrains.art_shop.Product;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-public class ProductRepr {
+public class ProductDTO {
 
     private Long id;
 
@@ -18,16 +18,16 @@ public class ProductRepr {
     @NotNull
     private Integer price;
 
-    public ProductRepr() {
+    public ProductDTO() {
     }
 
-    public ProductRepr(String category, String title, int price) {
+    public ProductDTO(String category, String title, int price) {
         this.category = category;
         this.title = title;
         this.price = price;
     }
 
-    public ProductRepr(Product product) {
+    public ProductDTO(Product product) {
         this.id = product.getId();
         this.category = product.getCategory();
         this.title = product.getTitle();
